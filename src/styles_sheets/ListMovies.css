@@ -1,0 +1,25 @@
+.ListMovies_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.img_movie {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.movie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  color: black;
+}
+
+.movie_title {
+  font-weight: 500;
+  margin: 0;
+  margin-top: 10px;
+}
