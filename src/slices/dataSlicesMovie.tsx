@@ -1,16 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fecthMoviesResDetail } from "../api/fecthMovies";
+import { fecthMovieResReviews, fecthMovieResSimilar, fecthMoviesResDetail } from "../api/fecthMovies";
 import { RootState } from "../app/store";
-import { MovieDetails } from "../types/interfaces";
+import { MovieDetailsAll } from "../types/interfaces";
 
-const initialState: MovieDetails = {
-  title: '',
-  poster_path: '',
-  id: 0,
-  genres: [],
-  overview: '',
-  release_date: '',
-  vote_average: 0
+const initialState: MovieDetailsAll = {
+  movie: {
+    title: '',
+    poster_path: '',
+    id: 0,
+    genres: [],
+    overview: '',
+    release_date: '',
+    vote_average: 0,
+    backdrop_path: '',
+    link: ''
+  },
+  reviews: [],
+  similar: [],
 }
 
 export const fecthMovieDetails = createAsyncThunk(
@@ -21,23 +27,39 @@ export const fecthMovieDetails = createAsyncThunk(
   }
 )
 
+export const fecthMovieReviews = createAsyncThunk(
+  'api/fecthMovieResReviews',
+  async (id: number, { dispatch }) => {
+    const movieRes = await fecthMovieResReviews(id)
+    dispatch(setMovieReviews(movieRes))
+  }
+)
+
+export const fecthMovieSimilar = createAsyncThunk(
+  'api/fecthMovieResSimilar',
+  async (id: number, { dispatch }) => {
+    const movieRes = await fecthMovieResSimilar(id)
+    dispatch(setMovieSimilar(movieRes))
+  }
+)
+
 export const dataMovieSlices = createSlice({
   name: 'dataMovie',
   initialState,
   reducers: {
     setMovie: (state, action) => {
-      state.title = action.payload.title
-      state.poster_path = action.payload.poster_path
-      state.id = action.payload.id
-      state.genres = action.payload.genres
-      state.overview = action.payload.overview
-      state.release_date = action.payload.release_date
-      state.vote_average = action.payload.vote_average
+      state.movie = action.payload.data
+    },
+    setMovieReviews: (state, action) => {
+      state.reviews = action.payload
+    },
+    setMovieSimilar: (state, action) => {
+      state.similar = action.payload
     }
   }
 })
 
-export const { setMovie } = dataMovieSlices.actions
+export const { setMovie, setMovieReviews, setMovieSimilar } = dataMovieSlices.actions
 
 export const movieState = (state: RootState) => state.dataMovie;
 
