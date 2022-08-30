@@ -15,11 +15,11 @@ h4 {
 /* <==== REUSABLE ====> */
 
 .container {
-  width: 70%;
+  width: 330px;
 }
 
 .margin_container {
-  margin: 50px;
+  margin: 50px 0;
 }
 
 .container_back {
@@ -64,23 +64,39 @@ h4 {
 }
 
 .img_container {
-  width: 100%;
-  background-size: cover;
   display: flex;
   justify-content: center;
+  position: relative;
+  background-color: rgb(7, 11, 27);
+}
+
+.img_back.two {
+  z-index: 0;
+  background-size: cover;
+  background-position: right;
+  filter: blur(15px) brightness(0.4);
 }
 
 .movieImg {
   width: 100%;
   background-size: cover;
+  z-index: 1;
+}
+
+.title_genre_container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .movieInfo_container {
-  padding: 35px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 34px;
+  z-index: 1;
+  background-color: white;
+  padding: 35px;
 }
 
 .title_container {
@@ -106,6 +122,16 @@ h4 {
 
 .ranking {
   color: var(--firts-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .genres_container {
@@ -170,14 +196,15 @@ h4 {
 
 .img_review {
   border-radius: 5px;
-  height: 80px;
   width: 80px;
+  height: 80px;
 }
 
 .info_review {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 25px;
+  width: 100%;
 }
 
 .firts_info {
@@ -192,11 +219,10 @@ h4 {
   border-radius: 5px;
   font-size: var(--normal-font-size);
   font-weight: 600;
-  height: 45px;
-  width: 85px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 }
 
 .date {
@@ -219,18 +245,18 @@ h4 {
 
 .similar {
   background-color: #fff;
-  overflow: hidden;
 }
 
-.all_similar_container {
-  margin: 50px;
+.container_back {
+  position: relative;
+  overflow: hidden;
+}
+.subtitule {
+  margin-bottom: 20px;
 }
 
 .similar_movies {
   margin-top: 20px;
-  gap: 0px 20px;
-  display: flex;
-  justify-content: flex-start;
 }
 
 .similar_movie {
@@ -243,4 +269,162 @@ h4 {
 .similar_img {
   width: 250px;
   border-radius: 5px;
+}
+
+.all_similar_container {
+  position: relative;
+}
+
+.swiper {
+  position: initial !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 50px;
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(16, 17, 20);
+  opacity: .5;
+  transition: .4s;
+  color: #fff;
+  border: none;
+  font-size: var(--normal-font-size);
+  border-radius: 10px;
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  opacity: 1;
+}
+
+.swiper-button-prev {
+  left: 0;
+  transform: translateX(-20px);
+}
+
+.swiper-button-next {
+  right: 0;
+  transform: translateX(20px);
+}
+
+/* <==== RESPONSIVE ====> */
+
+/* <==== SMALL DEVICES ====> */
+
+@media screen and (max-width: 376px) {
+  /* <==== BASE ====> */
+  h2 {
+    font-size: var(--h3-font-size);
+  }
+  h3 {
+    font-size: var(--normal-font-size);
+  }
+  h4 {
+    font-size: var(--small-font-size);
+  }
+  p {
+    font-size: var(--small-font-size);
+  }
+
+  /* <==== REUSABLE ====> */
+  .container {
+    width: 250px;
+  }
+
+  /* <==== MOVIE INFO ====> */
+  .movieInfo_container {
+    gap: 15px;
+  }
+  .title_container {
+    gap: 5px;
+  }
+  .tituleMovie {
+    line-height: 1.8rem;
+  }
+  .genre {
+    font-size: var(--small-font-size);
+  }
+  .button_watch {
+    font-size: var(--h3-font-size);
+  }
+
+  /* <==== MOVIE REVIEWS ====> */
+  .author {
+    margin-bottom: 0;
+  }
+  .date {
+    font-size: var(--small-font-size);
+  }
+  .rating {
+    padding: 10px;
+    font-size: var(--small-font2-size);
+  }
+}
+
+@media screen and (min-width: 377px) {
+  .container {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 470px) {
+  .container {
+    width: 70%;
+  }
+  .movieImg {
+    width: 335px;
+  }
+  .similar_img {
+    width: 250px;
+  }
+}
+
+@media screen and (min-width: 747px) {
+  .review {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .container {
+    width: 800px;
+  }
+  .similar_img {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .img_container {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .movieAll_container {
+    flex-direction: row;
+  }
+  .container {
+    width: 1200px;
+  }
+  .similar_img {
+    width: 250px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .container {
+    width: 1300px;
+  }
+  .movieInfo_container {
+    gap: 40px;
+  }
 }

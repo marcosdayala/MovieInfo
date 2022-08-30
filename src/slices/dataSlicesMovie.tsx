@@ -49,6 +49,7 @@ export const dataMovieSlices = createSlice({
   reducers: {
     setMovie: (state, action) => {
       state.movie = action.payload.data
+      state.movie.link = action.payload.link
     },
     setMovieReviews: (state, action) => {
       state.reviews = action.payload

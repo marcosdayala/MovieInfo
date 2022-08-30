@@ -11,7 +11,7 @@ export default function ListMovies() {
     dispatch(fecthMovies('popular'))
   }, [])
 
-  let imageUrl = 'https://image.tmdb.org/t/p/w500'
+  const { REACT_APP_IMAGE_URL } = process.env;
 
   return (
     <div className='ListMovies_container'>
@@ -19,7 +19,7 @@ export default function ListMovies() {
         return (
           <li key={movie.id}>
             <a className='movie' href={`/${movie.id}`}>
-              <img className='img_movie' src={`${imageUrl}${movie.poster_path}`} alt={movie.title} />
+              <img className='img_movie' src={`${REACT_APP_IMAGE_URL}${movie.poster_path}`} alt={movie.title} />
               <p className='movie_title'>{movie.title}</p>
             </a>
           </li>

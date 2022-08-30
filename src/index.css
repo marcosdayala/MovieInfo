@@ -36,10 +36,6 @@ a {
   --firts-color: rgb(63, 108, 230);
 
   /*========== Font and typography ==========*/
-  --biggest-font-size: 8rem;
-  --bigger-font-size: 3.5rem;
-  --big-font-size: 3rem;
-  --media-big-font-size: 2.5rem;
   --h2-font2-size: 2.1rem;
   --h2-font-size: 2rem;
   --h3-font2-size: 1.8rem;
@@ -48,7 +44,6 @@ a {
   --small-font2-size: 1rem;
   --small-font-size: .813rem;
   --smaller-font-size: .75rem;
-  --text-line-height: 2rem;
 
   --transition: 1.2s; 
 }

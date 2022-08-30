@@ -1,10 +1,8 @@
 import { useEffect } from "react";
-import { useParams } from "react-router";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { fecthMovieReviews } from "../../slices/dataSlicesMovie";
 
-const MovieReviews = () => {
-  let { movieId } = useParams()
+const MovieReviews = ({ movieId }: { movieId: string | undefined }) => {
 
   let movieReviews = useAppSelector(state => state.dataMovie.reviews)
   const dispatch = useAppDispatch();
@@ -13,7 +11,7 @@ const MovieReviews = () => {
     dispatch(fecthMovieReviews(Number(movieId)))
   }, [])
 
-  let avatarUrl = 'https://www.gravatar.com/avatar/'
+  const { REACT_APP_AVATAR_REVIEW_URL } = process.env;
   
   return (
     <div className='container_back'>
@@ -28,7 +26,7 @@ const MovieReviews = () => {
               let reviewImg = review.author_details.avatar_path
               return (
                 <div className='review' key={review.id}>
-                  <img className='img_review' src={`${avatarUrl}${reviewImg}`} alt={`Photo of ${review.author}`} />
+                  <img className='img_review' src={`${REACT_APP_AVATAR_REVIEW_URL}${reviewImg}`} alt={`Photo of ${review.author}`} />
                   <div className='info_review'>
                     <div className='firts_info'>
                       <div className='second_info'>

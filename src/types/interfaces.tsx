@@ -38,7 +38,7 @@ interface MovieReview {
 
 interface MovieSimilar {
   poster_path: string
-  original_title: string
+  title: string
   id: string
 }
 

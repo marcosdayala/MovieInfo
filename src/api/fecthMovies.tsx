@@ -1,12 +1,13 @@
 import axios from 'axios'
+import { fecthLocation } from './fecthLocation'
 
-let fecthUrl = 'https://api.themoviedb.org/3/movie/'
-let apiKey = '1298c9ce62ce8982cc2a5e519363c1e0'
-let language = 'en-US'
+const { REACT_APP_URL_KEY } = process.env;
+const { REACT_APP_FECTH_URL } = process.env;
+const { REACT_APP_LANGUAGE } = process.env;
 
 export const fecthMoviesRes = async(typesOfMovies: string) => {
   try {
-    const { data } = await axios.get(`${fecthUrl}${typesOfMovies}?api_key=${apiKey}&language=${language}&page=1`)    
+    const { data } = await axios.get(`${REACT_APP_FECTH_URL}${typesOfMovies}?api_key=${REACT_APP_URL_KEY}&language=${REACT_APP_LANGUAGE}&page=1`)    
     return data.results
   } catch (err) {
     console.log(err);
@@ -15,13 +16,21 @@ export const fecthMoviesRes = async(typesOfMovies: string) => {
 
 export const fecthMoviesResDetail = async(movie_id: number) => {
   try {
-    const { data } = await axios.get(`${fecthUrl}${movie_id}?api_key=${apiKey}&language=${language}`)
-    const watch = await axios.get(`${fecthUrl}${movie_id}/watch/providers?api_key=${apiKey}`)
-    let link = watch.data.results
+    const { data } = await axios.get(`${REACT_APP_FECTH_URL}${movie_id}?api_key=${REACT_APP_URL_KEY}&language=${REACT_APP_LANGUAGE}`)
+    const watch = await axios.get(`${REACT_APP_FECTH_URL}${movie_id}/watch/providers?api_key=${REACT_APP_URL_KEY}`)
+    let watchResults = watch.data.results
+
+    const countryCode = await fecthLocation()
+    const watchResultsKeys = Object.keys(watchResults);
+  
+    let link;
+    watchResultsKeys.map(ele => { ele == countryCode? link = watchResults[ele].link : link = watchResults['US'].link });
+    
     const result = {
       data,
       link
     }
+
     return result
   } catch (err) {
     console.log(err);
@@ -30,7 +39,7 @@ export const fecthMoviesResDetail = async(movie_id: number) => {
 
 export const fecthMovieResReviews = async(movie_id: number) => {
   try {
-    const { data } = await axios.get(`${fecthUrl}${movie_id}/reviews?api_key=${apiKey}&language=${language}`)
+    const { data } = await axios.get(`${REACT_APP_FECTH_URL}${movie_id}/reviews?api_key=${REACT_APP_URL_KEY}&language=${REACT_APP_LANGUAGE}`)
     let result = data.results.slice(0, 2)
     return result
   } catch (err) {
@@ -40,7 +49,7 @@ export const fecthMovieResReviews = async(movie_id: number) => {
 
 export const fecthMovieResSimilar = async(movie_id: number) => {
   try {
-    const { data } = await axios.get(`${fecthUrl}${movie_id}/recommendations?api_key=${apiKey}&language=${language}`)
+    const { data } = await axios.get(`${REACT_APP_FECTH_URL}${movie_id}/recommendations?api_key=${REACT_APP_URL_KEY}&language=${REACT_APP_LANGUAGE}`)
     return data.results
   } catch (err) {
     console.log(err);

@@ -1,10 +1,9 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useEffect } from "react";
 import { fecthMovieDetails } from "../../slices/dataSlicesMovie";
-import { useParams } from "react-router";
+import StarsRanking from "./StarsRanking";
 
-const MovieInfo = () => {
-  let { movieId } = useParams()
+const MovieInfo = ({ movieId }: { movieId: string | undefined }) => {
   
   const movie = useAppSelector(state => state.dataMovie.movie)
   const dispatch = useAppDispatch()
@@ -13,25 +12,22 @@ const MovieInfo = () => {
     dispatch(fecthMovieDetails(Number(movieId)))
   }, [])
 
-  let imageUrl = 'https://image.tmdb.org/t/p/w500'
-
-  let imageDiv = {
-    backgroundImage: `url('${imageUrl}${movie.backdrop_path}')`,
-  }  
+  const { REACT_APP_IMAGE_URL } = process.env;
 
   return (
     <div className='movie_container'>
-      <div style={imageDiv} className='img_back' />
+      <img src={`${REACT_APP_IMAGE_URL}${movie.backdrop_path}`} className='img_back' />
         <div className='container movieAll_container'>
-          <div style={imageDiv} className='img_container'>
-            <img className='movieImg' src={`${imageUrl}${movie.poster_path}`} alt={`Poster of ${movie.title}`} />
+          <div className='img_container'>
+            <img className='movieImg' src={`${REACT_APP_IMAGE_URL}${movie.poster_path}`} alt={`Poster of ${movie.title}`} />
           </div>
           <div className='movieInfo_container'>
+            <div className='title_genre_container'>
               <div className='title_container'>
                 <h2 className='tituleMovie'>{movie.title}</h2>
                 <div className='relase_ranking_container'>
                   <h4 className="relase">{`(${movie.release_date})`}</h4>
-                  <h4 className='ranking'>{`★★★★ ${Math.round(movie.vote_average)}/10`}</h4>
+                  <StarsRanking vote_average={ movie.vote_average } />
                 </div>
               </div>
               <ul className='genres_container'>
@@ -39,13 +35,10 @@ const MovieInfo = () => {
                   return <li className='genre' key={ele.id}>{ele.name}</li>
                 })}
               </ul>
+            </div>
             <div className="overwiew_container">
               <h3 className='overwiew'>Overview</h3>
-              <p className='overwiew_p'>
-                {
-                  `${movie.overview}`
-                }
-              </p>
+              <p className='overwiew_p'>{`${movie.overview}`}</p>
           </div>
           <a href={`${movie.link}`} target='_blank' className='button_watch'>Watch</a>
         </div>
