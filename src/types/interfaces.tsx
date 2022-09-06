@@ -47,3 +47,21 @@ export interface MovieDetailsAll {
   reviews: Array<MovieReview>
   similar: Array<MovieSimilar>
 }
+
+export interface FecthSearch {
+  characters: string
+  page: string
+}
+
+export interface Language {
+  language: string
+}
+
+export interface FecthLanguage {
+  id: number
+  language: string
+}
+
+export interface ColorTheme {
+  blackTheme: false
+}

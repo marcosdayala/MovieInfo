@@ -5,7 +5,7 @@ import '../styles_sheets/Nav_Footer.css'
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <div>
+    <div className='layout'>
       <Nav />
       { children }
       <Footer />

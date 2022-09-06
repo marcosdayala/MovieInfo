@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { fecthMoviesRes } from "../api/fecthMovies";
+import { fecthMoviesRes, fecthMoviesSearchRes } from "../api/fecthMovies";
 import { RootState } from "../app/store";
-import { Movies } from "../types/interfaces";
+import { FecthSearch, Movies } from "../types/interfaces";
 
 const initialState: Movies = {
   movies: []
@@ -11,6 +11,14 @@ export const fecthMovies = createAsyncThunk(
   'api/fecthMoviesRes',
   async (typesOfMovies: string, { dispatch }) => {
     const moviesRes = await fecthMoviesRes(typesOfMovies)
+    dispatch(setMovies(moviesRes))
+  }
+)
+
+export const fecthMoviesSearch = createAsyncThunk(
+  'api/fecthMoviesSearchRes',
+  async ({ characters, page }: FecthSearch, { dispatch }) => {
+    const moviesRes = await fecthMoviesSearchRes(characters, page)
     dispatch(setMovies(moviesRes))
   }
 )

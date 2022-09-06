@@ -2,15 +2,17 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useEffect } from "react";
 import { fecthMovieDetails } from "../../slices/dataSlicesMovie";
 import StarsRanking from "./StarsRanking";
+import { setLanguage } from "../../slices/dataSlicesLanguage";
 
 const MovieInfo = ({ movieId }: { movieId: string | undefined }) => {
-  
+  const language = useAppSelector(state => state.dataLanguage.language)
   const movie = useAppSelector(state => state.dataMovie.movie)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fecthMovieDetails(Number(movieId)))
-  }, [])
+    const movieIdNumber = Number(movieId)
+    dispatch(fecthMovieDetails({ id: movieIdNumber, language: language }))
+  }, [language])
 
   const { REACT_APP_IMAGE_URL } = process.env;
 
@@ -40,7 +42,12 @@ const MovieInfo = ({ movieId }: { movieId: string | undefined }) => {
               <h3 className='overwiew'>Overview</h3>
               <p className='overwiew_p'>{`${movie.overview}`}</p>
           </div>
-          <a href={`${movie.link}`} target='_blank' className='button_watch'>Watch</a>
+          {
+            movie.link !== undefined?
+            <a href={`${movie.link}`} target='_blank' className='button_watch'>{ language === 'US'? 'Watch' : 'Ver ahora' }</a>
+            :
+            <a className='button_watch'>{ language === 'US'? 'coming soon' : 'Próximamente'}</a>
+          }
         </div>
       </div>
     </div>

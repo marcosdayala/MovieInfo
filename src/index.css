@@ -31,9 +31,16 @@ a {
 :root {
 
   /*=== Colors ===*/
+  --text-color: #fff;
   --dark-color: #6E808E;
   --light-color: #E4EBF1;
-  --firts-color: rgb(63, 108, 230);
+  --first-color: #447EF2;
+  --second-color: #3663BF;
+  --first-dark-color: #0b0b0c;
+  --second-dark-color: #121212;
+  --third-dark-color: #0e0e10;
+
+  --box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 
   /*========== Font and typography ==========*/
   --h2-font2-size: 2.1rem;
@@ -63,6 +70,5 @@ h4 {
 }
 
 a {
-  color: #000;
+  color: #fff;
 }
-
