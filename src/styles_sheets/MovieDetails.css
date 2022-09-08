@@ -1,6 +1,5 @@
 /* <==== REUSABLE ====> */
 .container_back {
-  background-color: var(--first-dark-color);
   display: flex;
   justify-content: center;
 }
@@ -19,12 +18,13 @@
 }
 
 .margin_container {
-  margin: 50px 0;
+  margin-top: 50px;
 }
 
 /* <==== MOVIE INFO ====> */
 
 .movie_container {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,6 @@
   position: absolute;
   width: 115%;
   height: 115%;
-  z-index: -1;
   filter: blur(15px) brightness(0.7);
 }
 
@@ -58,7 +57,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  background-color: var(--second-color);
+  background-color: var(--second-dark-color);
 }
 
 .img_back.two {
@@ -156,7 +155,7 @@
 .button_watch {
   width: 100%;
   padding: 10px 15px;
-  font-size: var(--h3-font2-size);
+  font-size: var(--h3-font-size);
   background-color: var(--first-color);
   border-radius: 5px;
   font-weight: 700;
@@ -173,6 +172,7 @@
 /* <==== MOVIE REVIEW ====> */
 
 .reviews_container {
+  min-height: 150px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -319,20 +319,6 @@
 /* <==== SMALL DEVICES ====> */
 
 @media screen and (max-width: 376px) {
-  /* <==== BASE ====> */
-  h2 {
-    font-size: var(--h3-font-size);
-  }
-  h3 {
-    font-size: var(--normal-font-size);
-  }
-  h4 {
-    font-size: var(--small-font-size);
-  }
-  p {
-    font-size: var(--small-font-size);
-  }
-
   /* <==== REUSABLE ====> */
   .container {
     width: 250px;
@@ -352,7 +338,7 @@
     font-size: var(--small-font-size);
   }
   .button_watch {
-    font-size: var(--h3-font-size);
+    font-size: var(--normal-font-size);
   }
 
   /* <==== MOVIE REVIEWS ====> */
@@ -416,6 +402,9 @@
 }
 
 @media screen and (min-width: 1200px) {
+  .button_watch {
+    font-size: var(--h3-font2-size);
+  }
   .movieAll_container {
     flex-direction: row;
     height: 500px;
@@ -425,6 +414,9 @@
   }
   .similar_img {
     width: 250px;
+  }
+  .movie_container {
+    min-height: 100%;
   }
 }
 

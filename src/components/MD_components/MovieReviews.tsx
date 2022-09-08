@@ -13,6 +13,25 @@ const MovieReviews = ({ movieId }: { movieId: string | undefined }) => {
   }, [language])
 
   const { REACT_APP_AVATAR_REVIEW_URL } = process.env;
+
+  if (movieReviews.length === 0) {
+    return (
+      <div className='container_back'>
+        <div className='container margin_container'>
+          <div className='reviews_container'>
+            <h3 className='review'>
+              {
+                language === 'US'? 
+                'here are no reviews about this movie yet 😕' 
+                : 
+                'Aún no hay opiniones sobre esta película 😕' 
+              }
+              </h3>
+          </div>
+        </div>
+      </div>
+    )
+  }
   
   return (
     <div className='container_back'>
@@ -20,7 +39,6 @@ const MovieReviews = ({ movieId }: { movieId: string | undefined }) => {
         <h3 className='subtitule'>{ language === 'US'? 'Reviews of the people' : 'Opiniones de la comunidad'}</h3>
         <div className='reviews_container'>
           {
-            movieReviews.length !== 0?
             movieReviews.map(review => {
               let reviewDate = review.created_at.substring(0, 10)
               let reviewContent = review.content.substring(0, 300)
@@ -41,8 +59,6 @@ const MovieReviews = ({ movieId }: { movieId: string | undefined }) => {
                 </div>
               )
             })
-            :
-            <h3 className='review'>{ language === 'US'? 'here are no reviews about this movie yet 😕' : 'Aún no hay opiniones sobre esta película 😕' }</h3>
           }
         </div>
       </div>

@@ -46,7 +46,7 @@ const MovieInfo = ({ movieId }: { movieId: string | undefined }) => {
             movie.link !== undefined?
             <a href={`${movie.link}`} target='_blank' className='button_watch'>{ language === 'US'? 'Watch' : 'Ver ahora' }</a>
             :
-            <a className='button_watch'>{ language === 'US'? 'coming soon' : 'Próximamente'}</a>
+            <a style={{ cursor: 'default' }} className='button_watch'>{ language === 'US'? 'coming soon' : 'Próximamente'}</a>
           }
         </div>
       </div>

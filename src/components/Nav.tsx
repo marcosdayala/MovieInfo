@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
-import { HiMenu } from 'react-icons/hi';
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setLanguage } from "../slices/dataSlicesLanguage";
+import movieInfoLogo from '../movieInfo_logo/movieInfo_logo_small.png'
 
 const Nav = () => {
   
@@ -49,7 +49,7 @@ const Nav = () => {
       <div ref={nav} className='container_all_nav'>
         <div className='nav header'>
           <div className='container nav_container'>
-            <h2 className='logo'>LOGO</h2>
+            <img className='logo' src={movieInfoLogo} alt='logo' />
             <div className='flex'>
               <a className='menu_button' href='/'><span className='text'>{ language === 'US' ? 'Movies' : 'Películas' }</span></a>
               <a onClick={handleMenu} className='menu_button'><span className='text'>{ language === 'US' ? 'Languages' : 'Idioma' }</span></a>
@@ -72,8 +72,14 @@ const Nav = () => {
     <div ref={nav} className='container_all_nav'>
       <div className='nav header'>
         <div className='container nav_container'>
-          <h2 className='logo'>LOGO</h2>
-          <HiMenu className='menu_button' onClick={handleMenu} size={'2em'}/>
+          <img className='logo' src={movieInfoLogo} alt='logo' />
+          <label  htmlFor='check' className="bar">
+            <input onClick={handleMenu} id="check" type="checkbox" />
+
+            <span className="top"></span>
+            <span className="middle"></span>
+            <span className="bottom"></span>
+          </label>
         </div>
       </div>
       <div className='nav'>
