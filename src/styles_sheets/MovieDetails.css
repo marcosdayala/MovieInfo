@@ -2,6 +2,7 @@
 .container_back {
   display: flex;
   justify-content: center;
+  height: 100%;
 }
 
 .container_back.list {
@@ -150,6 +151,7 @@
 .overwiew_p {
   color: var(--text-color);
   opacity: .3;
+  font-weight: 300;
 }
 
 .button_watch {
@@ -369,7 +371,7 @@
 
 @media screen and (min-width: 470px) {
   .container {
-    width: 67%;
+    width: 75%;
   }
   .movieImg {
     width: initial;
@@ -388,7 +390,7 @@
 
 @media screen and (min-width: 1000px) {
   .container {
-    width: 800px;
+    width: 900px;
   }
   .similar_img {
     width: 250px;

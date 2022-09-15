@@ -41,7 +41,12 @@ export const fecthMoviesResDetail = async(movie_id: number, language: string) =>
     const watchResultsKeys = Object.keys(watchResults);
   
     let link;
-    watchResultsKeys.map(ele => { ele == countryCode? link = watchResults[ele].link : link = watchResults['US'].link });
+    if (link === undefined) {
+      link = undefined
+    }
+    else {
+      watchResultsKeys.map(ele => { ele == countryCode? link = watchResults[ele].link : link = watchResults['US'].link });
+    }
     
     const result = {
       data,

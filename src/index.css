@@ -15,6 +15,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -30,6 +34,9 @@ a {
 
 :root {
 
+  --animate-duration: 2s;
+  --animate-delay: 0.1s;
+
   /*=== Colors ===*/
   --text-color: #fff;
   --dark-color: #6E808E;
@@ -39,10 +46,20 @@ a {
   --first-dark-color: #0b0b0c;
   --second-dark-color: #121212;
   --third-dark-color: #0e0e10;
+  --gradient-color: linear-gradient(to bottom, #447ef2, #4077e5, #3d70d8, #396acc, #3663bf);;
 
-  --box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  /*=== Logos Colors ===*/
+  --react-color: #61DAFB;
+  --redux-color: #764ABC;
+  --typeScript-color: #3178C6;
+  --swiper-color: #0080FF;
+  --react-router-color: #F44250;
+  --tmdb-color: linear-gradient(to right, #90cea2, #6acab1, #3dc5c4, #00bdd7, #00b3e5);
 
   /*========== Font and typography ==========*/
+  --big-font-size: 4.1rem;
+  --titule-font-size: 3.1rem;
+  --subtitule-font-size: 2.5rem;
   --h2-font2-size: 2.1rem;
   --h2-font-size: 2rem;
   --h3-font2-size: 1.8rem;
@@ -87,4 +104,20 @@ a {
   p {
     font-size: var(--small-font-size);
   }
+}
+
+/*=============== SCROLL BAR ===============*/
+
+::-webkit-scrollbar {
+  width: .60rem;
+  background-color: var(--second-dark-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--second-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--first-color);
 }

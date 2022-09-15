@@ -2,7 +2,6 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useEffect } from "react";
 import { fecthMovieDetails } from "../../slices/dataSlicesMovie";
 import StarsRanking from "./StarsRanking";
-import { setLanguage } from "../../slices/dataSlicesLanguage";
 
 const MovieInfo = ({ movieId }: { movieId: string | undefined }) => {
   const language = useAppSelector(state => state.dataLanguage.language)

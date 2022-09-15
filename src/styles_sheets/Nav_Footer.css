@@ -1,5 +1,6 @@
 .layout {
   background-color: var(--first-dark-color);
+  overflow: hidden;
 }
 
 .container_all_nav {
@@ -35,20 +36,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 25px;
+  gap: 35px;
 }
 
 .menu {
   width: 100%;
   top: 0;
   right: 0;
-  height: 118px;
   position: absolute;
   background-color: var(--third-dark-color);
   z-index: 0;
   border-radius: 0 0 5px 5px;
   overflow: hidden;
-  translate: 0px -120px;
+  translate: 0px -170px;
   transition: 0.4s;
   transition-timing-function: ease-in-out;
 }
@@ -68,7 +68,8 @@
 }
 
 .menu_element {
-  border-top: 2px solid var(--second-dark-color);
+  border-top: 1px solid var(--second-dark-color);
+  border-bottom: 1px solid var(--second-dark-color);
   padding: 15px 25px;
   display: flex;
   justify-content: center;
@@ -98,7 +99,7 @@
 }
 
 .container_all_nav.language .menu {
-  height: 177px;
+  height: 226px;
 }
 
 .text {
@@ -171,13 +172,19 @@ input[type]:checked ~ span.middle {
 
 @media screen and (min-width: 1000px) {
   .menu {
-    width: 200px;
+    width: 315px;
   }
 }
 
 @media screen and (max-width: 1200px) {
   .logo {
-    width: 70px;
+    width: 55px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .menu {
+    height: 168px;
   }
 }
 

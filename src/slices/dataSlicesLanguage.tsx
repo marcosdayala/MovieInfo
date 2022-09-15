@@ -6,7 +6,7 @@ const initialState: Language = {
   language: 'US'
 }
 
-if (sessionStorage.getItem('language') == '"ES"') {
+if (sessionStorage.getItem('language') === '"ES"') {
   initialState.language = 'ES'
 }
 

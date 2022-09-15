@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setLanguage } from "../slices/dataSlicesLanguage";
-import movieInfoLogo from '../movieInfo_logo/movieInfo_logo_small.png'
+import movieInfoLogo from '../resources/movieInfo_logo_small.png'
+import { useLocation } from "react-router";
 
 const Nav = () => {
+  let location = useLocation();
   
   const nav = useRef<HTMLDivElement>(null)
   const [width, setWidth] = useState(window.innerWidth)
@@ -36,22 +38,25 @@ const Nav = () => {
     if (language === 'spanish') {
       sessionStorage.setItem('language', JSON.stringify('ES'))
       dispatch(setLanguage('ES'))
+      handleMenu()
     }
     else if(language === 'english') {
       sessionStorage.setItem('language', JSON.stringify('US'))
       dispatch(setLanguage('US'))
+      handleMenu()
     }
   }
 
   if (width >= 1000) {
     nav.current?.classList.remove('language')
     return (
-      <div ref={nav} className='container_all_nav'>
-        <div className='nav header'>
+      <div id='top' style={location.pathname === '/about'? { position: 'relative'} : { position: 'sticky' }} ref={nav} className='container_all_nav'>
+        <div style={location.pathname === '/about'? { backgroundColor: 'var(--first-dark-color)' } : {}} className='nav header'>
           <div className='container nav_container'>
             <img className='logo' src={movieInfoLogo} alt='logo' />
             <div className='flex'>
               <a className='menu_button' href='/'><span className='text'>{ language === 'US' ? 'Movies' : 'Películas' }</span></a>
+              <a className='menu_button' href='/about'><span className='text'>{ language === 'US' ? 'About' : 'Proyecto' }</span></a>
               <a onClick={handleMenu} className='menu_button'><span className='text'>{ language === 'US' ? 'Languages' : 'Idioma' }</span></a>
             </div>
           </div>
@@ -69,8 +74,8 @@ const Nav = () => {
   }
 
   return (
-    <div ref={nav} className='container_all_nav'>
-      <div className='nav header'>
+    <div id='top' style={location.pathname === '/about'? { position: 'relative'} : { position: 'sticky' }} ref={nav} className='container_all_nav'>
+      <div style={location.pathname === '/about'? { backgroundColor: 'var(--first-dark-color)' } : {}} className='nav header'>
         <div className='container nav_container'>
           <img className='logo' src={movieInfoLogo} alt='logo' />
           <label  htmlFor='check' className="bar">
@@ -85,7 +90,8 @@ const Nav = () => {
       <div className='nav'>
         <div className='container menu_container'>
           <div className='menu'>
-            <a className='menu_element' href='/'><span className='text'>{ language === 'US' ? 'Movie' : 'Películas' }</span></a>
+            <a className='menu_element' href='/'><span className='text'>{ language === 'US' ? 'Movies' : 'Películas' }</span></a>
+            <a className='menu_button' href='/about'><span className='text'>{ language === 'US' ? 'About' : 'Proyecto' }</span></a>
             <a onClick={handleLanguageButton} className='menu_element'><span className='text'>{ language === 'US' ? 'Languages' : 'Idioma' }</span></a>
             <div className='menu_element deep'>
               <a onClick={() => handleLanguage('spanish')} className='menu_element_deep'><span className='text white'>{ language === 'US' ? 'Spanish' : 'Español' }</span></a>

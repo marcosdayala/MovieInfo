@@ -113,6 +113,12 @@
   }
 }
 
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+  .movie_title {
+    font-size: var(--small-font2-size);
+  }
+}
+
 @media screen and (min-width: 1000px) {
   .ListMovies_container {
     grid-template-columns: repeat(4, 1fr);

@@ -38,7 +38,7 @@ export default function ListMovies() {
   }
 
   return (
-    <div id='top' className='container_back list'>
+    <div className='container_back list'>
       <div className='container margin_container all_list_container'>
         <input onChange={(e) => handleList(e)} type="text" className='input_movies' placeholder={ language === 'US'? 'Search for a movie...' : 'Introduce el nombre de una película...' } />
         <div className='ListMovies_container'>
