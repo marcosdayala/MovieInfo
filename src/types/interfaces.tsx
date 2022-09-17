@@ -62,6 +62,6 @@ export interface FecthLanguage {
   language: string
 }
 
-export interface ColorTheme {
-  blackTheme: false
+export interface Loading {
+  loading: boolean
 }

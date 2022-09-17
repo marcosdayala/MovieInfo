@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useAppSelector, useAppDispatch, useOnScreen } from "../../app/hooks";
-import { fecthMovieSimilar } from "../../slices/dataSlicesMovie";
+import { fecthMovieSimilar } from "../../slices/MovieDetailSlices";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { SwiperButtonNext, SwiperButtonPrev } from "./SwipersButtons";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
@@ -13,7 +13,7 @@ export default function MovieSimilar({ movieId }: { movieId: string | undefined 
 
   const movieSimilarRef: any = useRef<HTMLDivElement>()
 
-  const onScreen: boolean = useOnScreen<HTMLDivElement>(movieSimilarRef, '-100px')
+  const onScreen: boolean = useOnScreen<HTMLDivElement>(movieSimilarRef, '-50px')
   
   useEffect(() => {
     const movieIdNumber = Number(movieId)
@@ -70,7 +70,7 @@ export default function MovieSimilar({ movieId }: { movieId: string | undefined 
           <SwiperButtonPrev><AiOutlineArrowLeft /></SwiperButtonPrev>
           </Swiper>
         :
-        <div></div>
+        <></>
         }
       </div>
     </div>

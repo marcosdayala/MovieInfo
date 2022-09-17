@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { fecthMovieReviews } from "../../slices/dataSlicesMovie";
+import { fecthMovieReviews } from "../../slices/MovieDetailSlices";
 
 const MovieReviews = ({ movieId }: { movieId: string | undefined }) => {
   const language = useAppSelector(state => state.dataLanguage.language)
+  const loading = useAppSelector(state => state.dataLoading.loading)
   let movieReviews = useAppSelector(state => state.dataMovie.reviews)
   const dispatch = useAppDispatch();
 
@@ -19,14 +20,19 @@ const MovieReviews = ({ movieId }: { movieId: string | undefined }) => {
       <div className='container_back'>
         <div className='container margin_container'>
           <div className='reviews_container'>
-            <h3 className='review'>
-              {
-                language === 'US'? 
-                'here are no reviews about this movie yet 😕' 
-                : 
-                'Aún no hay opiniones sobre esta película 😕' 
-              }
+            {
+              loading ?
+              <></>
+              :
+              <h3 className='review'>
+                {
+                  language === 'US'? 
+                  'here are no reviews about this movie yet 😕' 
+                  : 
+                  'Aún no hay opiniones sobre esta película 😕' 
+                }
               </h3>
+            }
           </div>
         </div>
       </div>

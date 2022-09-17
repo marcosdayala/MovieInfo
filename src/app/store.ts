@@ -1,15 +1,15 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import dataSlices from '../slices/dataSlices';
-import dataSlicesLanguage from '../slices/dataSlicesLanguage';
-import dataMovieSlices from '../slices/dataSlicesMovie';
-import dataSlicesTheme from '../slices/dataSlicesTheme';
+import MoviesListSlices from '../slices/MoviesListSlices';
+import LanguagesSlices from '../slices/LanguagesSlices';
+import MovieDetailSlices from '../slices/MovieDetailSlices';
+import loadingSlice from '../slices/LoadingSlices';
 
 export const store = configureStore({
   reducer: {
-    data: dataSlices,
-    dataMovie: dataMovieSlices,
-    dataLanguage: dataSlicesLanguage,
-    dataTheme: dataSlicesTheme
+    dataMovieList: MoviesListSlices,
+    dataMovie: MovieDetailSlices,
+    dataLanguage: LanguagesSlices,
+    dataLoading: loadingSlice
   },
 });
 

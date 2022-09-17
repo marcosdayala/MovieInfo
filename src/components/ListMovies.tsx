@@ -1,11 +1,13 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { fecthMovies, fecthMoviesSearch } from '../slices/dataSlices';
+import { fecthMovies, fecthMoviesSearch } from '../slices/MoviesListSlices';
 import '../styles_sheets/ListMovies.css'
+import Loading from './Loading';
 
 export default function ListMovies() {
-  const movies = useAppSelector(state => state.data.movies)
+  const movies = useAppSelector(state => state.dataMovieList.movies)
   const language = useAppSelector(state => state.dataLanguage.language)
+  const loading = useAppSelector(state => state.dataLoading.loading)
   const [page, setPage] = useState(1)
   const [searchText, setSearchText] = useState('')
   const [searchActive, setSearchActive] = useState(false)
@@ -23,6 +25,7 @@ export default function ListMovies() {
           page: page.toString()
         }))
     }
+    
   }, [searchText, page, language])
 
   const handlePage = (string: string) => {
@@ -41,33 +44,50 @@ export default function ListMovies() {
     <div className='container_back list'>
       <div className='container margin_container all_list_container'>
         <input onChange={(e) => handleList(e)} type="text" className='input_movies' placeholder={ language === 'US'? 'Search for a movie...' : 'Introduce el nombre de una película...' } />
-        <div className='ListMovies_container'>
-          {
-            movies.length === 0?
-            <div className='container_no_found'>
-              <h3 className='no_found'>{ language === 'US'? "Sorry, we couldn't find your movie... 😕" : 'Lo sentimos, no pudimos encontrar la película... 😕' }</h3>
-            </div>
-            :
-            movies.map(movie => {
-              if (movie.poster_path === null) {
-                return <></>
+        {
+          loading ? 
+          <Loading />
+          :
+          <>
+            <div className='ListMovies_container'>
+              {
+                movies.length === 0?
+                <div className='container_no_found'>
+                  <h3 className='no_found'>{ language === 'US'? "Sorry, we couldn't find your movie... 😕" : 'Lo sentimos, no pudimos encontrar la película... 😕' }</h3>
+                </div>
+                :
+                movies.map(movie => {
+                  if (movie.poster_path === null) {
+                    return <></>
+                  }
+                  let movieTitle = movie.title.substring(0, 41)
+                  return (
+                    <li className='movie_container_list' key={movie.id}>
+                      <a className='movie' href={`/${movie.id}`}>
+                        <img className='img_movie' src={`${REACT_APP_IMAGE_URL}${movie.poster_path}`} alt={movie.title} />
+                        <div className='movie_title'>{movieTitle}</div>
+                      </a>
+                    </li>
+                  );
+                })
               }
-              let movieTitle = movie.title.substring(0, 41)
-              return (
-                <li className='movie_container_list' key={movie.id}>
-                  <a className='movie' href={`/${movie.id}`}>
-                    <img className='img_movie' src={`${REACT_APP_IMAGE_URL}${movie.poster_path}`} alt={movie.title} />
-                    <div className='movie_title'>{movieTitle}</div>
-                  </a>
-                </li>
-              );
-            })
-          }
-        </div>
-        <div className='buttons_container'>
-          <a href='#top' onClick={() => handlePage('prev')} className='button'>{ language? 'Previous' : 'Anterior' }</a>
-          <a href='#top' onClick={() => handlePage('next')} className='button'>{ language? 'Next' : 'Siguiente' }</a>
-        </div>
+            </div>
+            {
+              movies.length === 0 ?
+              <></>
+              :
+              (
+                movies.length === 1?
+                <></>
+                :
+                <div className='buttons_container'>
+                  <a href='#top' onClick={() => handlePage('prev')} className='button'>{ language? 'Previous' : 'Anterior' }</a>
+                  <a href='#top' onClick={() => handlePage('next')} className='button'>{ language? 'Next' : 'Siguiente' }</a>
+                </div>
+              )
+            }
+          </>
+        }
       </div>
     </div>
   )

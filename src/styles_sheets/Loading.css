@@ -1,0 +1,31 @@
+.loader {
+  width: 200px;
+  height: 4px;
+  border-radius: 30px;
+  background-color: var(--second-dark-color);
+  position: relative;
+}
+ 
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--first-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1.5s ease-in-out infinite;
+}
+ 
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}

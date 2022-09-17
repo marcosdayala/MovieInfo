@@ -24,7 +24,6 @@ export function useOnScreen<T extends Element>(ref: MutableRefObject<T>, rootMar
     return () => {
       observer.unobserve(ref.current)
     };
-    
   }, [])
   return isIntersecting
 }

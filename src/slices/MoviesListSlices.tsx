@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { fecthMoviesRes, fecthMoviesSearchRes } from "../api/fecthMovies";
 import { RootState } from "../app/store";
 import { FecthSearch, Movies } from "../types/interfaces";
+import { setLoading } from "./LoadingSlices";
 
 const initialState: Movies = {
   movies: []
@@ -10,8 +11,10 @@ const initialState: Movies = {
 export const fecthMovies = createAsyncThunk(
   'api/fecthMoviesRes',
   async (typesOfMovies: string, { dispatch }) => {
+    dispatch(setLoading(true));
     const moviesRes = await fecthMoviesRes(typesOfMovies)
     dispatch(setMovies(moviesRes))
+    dispatch(setLoading(false));
   }
 )
 
@@ -23,8 +26,8 @@ export const fecthMoviesSearch = createAsyncThunk(
   }
 )
 
-export const dataSlices = createSlice({
-  name: 'data',
+export const dataMoviesList = createSlice({
+  name: 'movieList',
   initialState,
   reducers: {
     setMovies: (state, action) => {
@@ -33,8 +36,8 @@ export const dataSlices = createSlice({
   }
 })
 
-export const { setMovies } = dataSlices.actions
+export const { setMovies } = dataMoviesList.actions
 
-export const movieState = (state: RootState) => state.data.movies
+export const moviesListState = (state: RootState) => state.dataMovieList.movies
 
-export default dataSlices.reducer
+export default dataMoviesList.reducer

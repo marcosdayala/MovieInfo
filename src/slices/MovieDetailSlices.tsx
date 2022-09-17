@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fecthMovieResReviews, fecthMovieResSimilar, fecthMoviesResDetail } from "../api/fecthMovies";
 import { RootState } from "../app/store";
 import { FecthLanguage, MovieDetailsAll } from "../types/interfaces";
+import { setLoading } from "./LoadingSlices";
 
 const initialState: MovieDetailsAll = {
   movie: {
@@ -22,8 +23,10 @@ const initialState: MovieDetailsAll = {
 export const fecthMovieDetails = createAsyncThunk(
   'api/fecthMoviesResDetail',
   async ({ id, language }: FecthLanguage, { dispatch }) => {
+    dispatch(setLoading(true));
     const movieRes = await fecthMoviesResDetail(id, language)
     dispatch(setMovie(movieRes))
+    dispatch(setLoading(false));
   }
 )
 
@@ -43,8 +46,8 @@ export const fecthMovieSimilar = createAsyncThunk(
   }
 )
 
-export const dataMovieSlices = createSlice({
-  name: 'dataMovie',
+export const movieDetaildSlices = createSlice({
+  name: 'MovieDetaild',
   initialState,
   reducers: {
     setMovie: (state, action) => {
@@ -60,8 +63,8 @@ export const dataMovieSlices = createSlice({
   }
 })
 
-export const { setMovie, setMovieReviews, setMovieSimilar } = dataMovieSlices.actions
+export const { setMovie, setMovieReviews, setMovieSimilar } = movieDetaildSlices.actions
 
 export const movieDetailState = (state: RootState) => state.dataMovie;
 
-export default dataMovieSlices.reducer
+export default movieDetaildSlices.reducer

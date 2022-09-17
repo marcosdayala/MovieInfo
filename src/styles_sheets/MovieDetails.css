@@ -401,6 +401,9 @@
   .img_container {
     width: 100%;
   }
+  .movieAll_container {
+    min-height: 750px;
+  }
 }
 
 @media screen and (min-width: 1200px) {

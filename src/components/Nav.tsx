@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { setLanguage } from "../slices/dataSlicesLanguage";
+import { setLanguage } from "../slices/LanguagesSlices";
 import movieInfoLogo from '../resources/movieInfo_logo_small.png'
 import { useLocation } from "react-router";
 
