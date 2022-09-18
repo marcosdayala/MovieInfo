@@ -81,8 +81,8 @@ export default function ListMovies() {
                 <></>
                 :
                 <div className='buttons_container'>
-                  <a href='#top' onClick={() => handlePage('prev')} className='button'>{ language? 'Previous' : 'Anterior' }</a>
-                  <a href='#top' onClick={() => handlePage('next')} className='button'>{ language? 'Next' : 'Siguiente' }</a>
+                  <a href='#top' onClick={() => handlePage('prev')} className='button'>{ language === 'US'? 'Previous' : 'Anterior' }</a>
+                  <a href='#top' onClick={() => handlePage('next')} className='button'>{ language === 'US'? 'Next' : 'Siguiente' }</a>
                 </div>
               )
             }

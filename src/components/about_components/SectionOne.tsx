@@ -17,7 +17,7 @@ const SectionOne = ({ widthScreen }: { widthScreen: number }) => {
                 language === 'US'?
                 <h1 className='titule'>Do you want to know <span className='text_blue'>how I made</span> this project?</h1>
                 :
-                <h1 className='titule'>¿Quieres saber <span className='text_blue'>cómo realizé</span> este proyecto?</h1>
+                <h1 className='titule'>¿Quieres saber <span className='text_blue'>cómo realicé</span> este proyecto?</h1>
               }
               <p className='text_small one'>{ language === 'US'? 'Follow me...' : 'Sígueme...' }</p>
             </div>
